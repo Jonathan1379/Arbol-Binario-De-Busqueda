@@ -1,8 +1,6 @@
 /*
 * C++ - Árboles Binarios de Búsqueda
-* Copyright 2014 Martin Cruz Otiniano 
-* Description  : Funciones de Insercion, Busqueda, Eliminacion, Recorridos por niveles(amplitud), Altura, Arbol reflejo, Contar hojas.
-* Site         : martincruz.me
+* Copyright 2014 Martin Cruz Otiniano
 */
 
 #include <iostream>
@@ -190,30 +188,6 @@ int alturaAB(ABB arbol)
             return AltDer+1;
     }
 }
-
-void recorrerxNivel(ABB arbol)
-{
-     struct cola q;
-     inicializaCola(q);
-     cout << "\t";
-
-     if(arbol!=NULL)
-     {
-         encola(q, arbol);
-
-         while(q.delante!=NULL)
-         {
-             arbol = desencola(q);
-             cout << arbol->nro << ' ';
-
-             if(arbol->izq!=NULL)
-                 encola(q, arbol->izq);
-             if(arbol->der!=NULL)
-                 encola(q, arbol->der);
-         }
-     }
-}
-
 ABB arbolEspejo(ABB arbol)
 {
     ABB temp;
@@ -227,32 +201,8 @@ ABB arbolEspejo(ABB arbol)
     return arbol;
 }
 
-void nodosMenoresQueK(ABB arbol, int n)
-{
-     if(arbol==NULL)
-          return;
-     nodosMenoresQueK(arbol->der, n+1);
-     if(arbol->nro<k)
-         numK++;
-     nodosMenoresQueK(arbol->izq, n+1);
 
-}
 
-int contarHojas(ABB arbol)
-{
-        if (arbol==NULL)
-        {
-                return 0;
-        }
-        if ((arbol->der ==NULL)&&(arbol->izq ==NULL))
-        {
-                return 1;
-        }
-        else
-        {
-                return contarHojas(arbol->izq) + contarHojas(arbol->der);
-        }
-}
 void menu()
 {
      //system("cls");
@@ -262,13 +212,9 @@ void menu()
      cout << "\t [3]  Recorridos de profundiad           \n";
      cout << "\t [4]  Buscar elemento                    \n";
      cout << "\t [5]  Eliminar elemento                  \n";
-     cout << "\t [6]  Recorrido por nieveles (Amplitud)  \n";
-     cout << "\t [7]  Altura del arbol                   \n";
-     cout << "\t [8]  Construir arbol reflejo            \n";
-     cout << "\t [9]  Contar nodos                       \n";
-     cout << "\t [x]  Contar hojas                       \n";
-     cout << "\t [11]  Nodos menores de 'k'               \n";
-     cout << "\t [12] SALIR                              \n";
+     cout << "\t [6]  Altura del arbol                   \n";
+     cout << "\t [7]  Construir arbol reflejo            \n";
+     cout << "\t [0] SALIR                              \n";
 
      cout << "\n\t Ingrese opcion : ";
 }
@@ -345,46 +291,21 @@ int main()
                     cout << "\n\tEliminado..!";
                     break;
 
-               case 6:
-                    cout<<"\n\n Mostrando recorrido por amplitud\n\n";
-                    recorrerxNivel(arbol);
-                    break;
 
-               case 7:
+               case 6:
                     int h;
                     h = alturaAB(arbol);
                     cout << " La altura es : "<< h << endl;
                     break;
 
-               case 8:
-                    ABB espejo;
-                    espejo = NULL;
-
-                    cout << "\n\n Arbol incial \n\n";
-
-                    verArbol(arbol, 0);
-
-                    cout << "\n\n Arbol espejo \n\n";
-
-                    espejo = arbolEspejo(arbol);
-
-                    verArbol(espejo, 0);
-                    break;
-
-               case 9:
+               case 7:
                     verArbol(arbol, 0);
                     cout << "\n\n El numero de nodos es : ";
                     cout << numNodos;
                     break;
 
-               case 11:
-                    cout << " Ingrese k: "; cin>> k;
-                    nodosMenoresQueK(arbol, 0);
-                    cout <<" Son  "<< numK << "  numeros";
-                    break;
 
-
-               case 12:
+               case 0:
                     exit(0);
           }
 
