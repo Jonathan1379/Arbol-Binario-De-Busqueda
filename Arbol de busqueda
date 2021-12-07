@@ -1,8 +1,5 @@
-/*
-* C++ - Árboles Binarios de Búsqueda
-* Copyright 2014 Martin Cruz Otiniano
-*/
-
+//C++ - Árboles Binarios de Búsqueda
+// Copyright 2014 Martin Cruz Otiniano
 #include <iostream>
 #include <stdlib.h>
 
